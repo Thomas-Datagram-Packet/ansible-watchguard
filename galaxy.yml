@@ -1,0 +1,26 @@
+namespace: "thomas_datagram_packet"
+
+name: "firebox"
+
+version: "1.0.0"
+
+readme: README.md
+
+authors:
+  - "Thomas-Datagram-Packet"
+
+description: "Ansible Collection for WatchGuard XTM/Firebox devices"
+
+license:
+  - "Apache-2.0"
+
+tags:
+  - firebox
+  - xtm
+  - watchguard
+  - networking
+  - firewall
+
+repository: https://github.com/Thomas-Datagram-Packet/ansible-watchguard.git
+
+issues: https://github.com/Thomas-Datagram-Packet/ansible-watchguard/issues

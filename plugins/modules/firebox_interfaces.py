@@ -14,7 +14,7 @@ notes:
  - Set ansible_command_timeout in the playbook to avoid default 30-second timeout issues.
  - Be careful when editing external interfaces. Removing or changing the only external of a device interface will ask you to enter the default gateway. Thus the configuration won't be applied.
  - The ansible VM must be connected once manually through SSH before using the module, so the SSH host key is stored in known_hosts.
-
+ - Make sure you have installed requirements (ansible, ansible-pylibssh, ansible.netcommon) and be in a virtual environnement where those modules have been installed
 author:
  - Thomas-Datagram-Packet
  - WatchGuard Technologies, Inc. all rights reserved
@@ -26,14 +26,14 @@ EXAMPLES = '''
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 5
 
   tasks:
     - name: Test ppoe static
-        watchguard.firebox.firebox_interfaces:
+        thomas_datagram_packet.firebox.firebox_interfaces:
                 interface: 0
                 name: "PPPOE_STATIC"
                 edit_type: "external"
@@ -47,14 +47,14 @@ EXAMPLES = '''
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 5
 
   tasks:
     - name: test DHCP
-        watchguard.firebox.firebox_interfaces:
+        thomas_datagram_packet.firebox.firebox_interfaces:
                 interface: 0
                 name: "test_external_DHCP_OK"
                 edit_type: custom

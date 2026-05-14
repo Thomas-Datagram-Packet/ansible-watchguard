@@ -1,4 +1,4 @@
-# Ansible Collection - watchguard.firebox
+# Ansible Collection - thomas_datagram_packet.firebox
 
 This collection provides modules to import commands to Watchguard Fireboxes.
 
@@ -24,7 +24,7 @@ all:
       ansible_user: admin
       ansible_password: password
       ansible_connection: network_cli
-      ansible_network_os: watchguard.firebox.xtm
+      ansible_network_os: thomas_datagram_packet.firebox.xtm
       ansible_port: 4118
 ```
 ### Playbook examples
@@ -32,19 +32,23 @@ all:
 According to the fireboxes configuration, an expilicit exit can be required.
 Therefore,  `ansible_command_timeout` is recommanded to avoid a 30-second freeze (default time out duration) a the end of the play
 
+Also, the ansible VM must be connected once manually through SSH before using the module, so the SSH host key is stored in known_hosts.
+
+Finally make sure you have installed requirements (ansible, ansible-pylibssh, ansible.netcommon) and be in a virtual environnement where those modules have been installed
+
 ```YAML
 - name: Edit interface
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 5
 
   tasks:
     - name: test 1 change IP
-      watchguard.firebox.firebox_interfaces:
+      thomas_datagram_packet.firebox.firebox_interfaces:
         interface: 0
         name: "test_external_ip_and_pppoe_OK"
         ip: "145.67.19.19"
@@ -52,7 +56,7 @@ Therefore,  `ansible_command_timeout` is recommanded to avoid a 30-second freeze
         default_gw: "145.66.1.1"
 
     - name: applied
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "show interface"
 ```
 
@@ -62,7 +66,7 @@ Therefore,  `ansible_command_timeout` is recommanded to avoid a 30-second freeze
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 3
@@ -70,12 +74,12 @@ Therefore,  `ansible_command_timeout` is recommanded to avoid a 30-second freeze
   tasks:
 
     - name: Edit IP address
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "ip address 10.0.199.1 255.255.255.0 default-gw 10.0.199.3"
         level: "interface FastEthernet 0"
 
     - name: Example config command 3
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "show interface"
 ```
 
@@ -85,13 +89,13 @@ Therefore,  `ansible_command_timeout` is recommanded to avoid a 30-second freeze
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
   vars:
     ansible_command_timeout: 5
 
   tasks:
     - name: Import commands
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command:
           - show interface
           - show vlan

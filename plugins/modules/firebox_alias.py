@@ -12,6 +12,7 @@ description:
 notes:
  - Set ansible_command_timeout in the playbook to avoid default 30-second timeout issues.
  - The ansible VM must be connected once manually through SSH before using the module, so the SSH host key is stored in known_hosts.
+ - Make sure you have installed requirements (ansible, ansible-pylibssh, ansible.netcommon) and be in a virtual environnement where those modules have been installed
 author:
  - Thomas-Datagram-Packet
  - WatchGuard Technologies, Inc. all rights reserved
@@ -22,21 +23,21 @@ EXAMPLES = '''
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 5
 
   tasks:
     - name: authorized characters in aliases' name and description
-      watchguard.firebox.firebox_alias:
+      thomas_datagram_packet.firebox.firebox_alias:
         name: "-, space, comma, 00_, +,[,] ., (, 88), *, :, @, /, ;"
         description: "-, space, comma, 00_, [,] +, ., (, 88), *, :, @, /, ;"
         host_range_start_ip: "1.1.1.1"
         host_range_end_ip: "1.1.1.2"
 
     - name: applied
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "show alias"
 '''
 RETURN = r""" # """

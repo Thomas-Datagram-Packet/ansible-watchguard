@@ -1,0 +1,36 @@
+{
+ "collection_info": {
+  "namespace": "watchguard",
+  "name": "firebox",
+  "version": "1.0.0",
+  "authors": [
+   "Thomas-Datagram-Packet"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "firebox",
+   "xtm",
+   "watchguard",
+   "networking",
+   "firewall"
+  ],
+  "description": "Ansible Collection for WatchGuard XTM/Firebox devices",
+  "license": [
+   "Apach-2.0"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "https://github.com/Thomas-Datagram-Packet/ansible-watchguard.git",
+  "documentation": null,
+  "homepage": null,
+  "issues": "https://github.com/Thomas-Datagram-Packet/ansible-watchguard/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "5818db8336682a582a95aa40e4f12079a5f41fcf038ac20598bfe704d243535a",
+  "format": 1
+ },
+ "format": 1
+}

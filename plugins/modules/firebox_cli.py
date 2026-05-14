@@ -12,7 +12,7 @@ notes:
  - Set ansible_command_timeout in the playbook to avoid default 30-second timeout issues.
  - The ansible VM must be connected once manually through SSH before using the module, so the SSH host key is stored in known_hosts.
  - Be careful on sending multiple commands to the same level of configuration (mode)
-
+ - Make sure you have installed requirements (ansible, ansible-pylibssh, ansible.netcommon) and be in a virtual environnement where those modules have been installed
 author:
  - Thomas-Datagram-Packet
  - WatchGuard Technologies, Inc. all rights reserved
@@ -23,7 +23,7 @@ EXAMPLES = '''
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 3
@@ -31,20 +31,20 @@ EXAMPLES = '''
   tasks:
 
     - name: Edit interface with config module
-      watchguard.firebox.firebox_config:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "ip address 10.0.199.1 255.255.255.0 default-gw 10.0.199.3"
         level: "interface FastEthernet 0"
       become: true
 
     - name: applied
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "show interface"
 
 - name: change_config
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 3
@@ -52,20 +52,20 @@ EXAMPLES = '''
   tasks:
 
     - name: Add an alias with config module
-      watchguard.firebox.firebox_config:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "alias final-test description desc host-ip 1.1.1.3"
         level: "policy"
       become: true
 
     - name: applied
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "show alias"
 
 - name: change_config
   hosts: firebox_1
   gather_facts: false
   collections:
-    - watchguard.firebox
+    - thomas_datagram_packet.firebox
 
   vars:
     ansible_command_timeout: 3
@@ -73,12 +73,12 @@ EXAMPLES = '''
   tasks:
 
     - name: Edit DNS server of the firebox
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli:
         command: "ip dns server 8.8.8.8"
       become: true
 
     - name: applied
-      watchguard.firebox.firebox_cli:
+      thomas_datagram_packet.firebox.firebox_cli::
         command:
           - "show interface"
           - "show dns"

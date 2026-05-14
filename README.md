@@ -10,6 +10,8 @@ This collection provides modules to import commands to Watchguard Fireboxes.
 
 ## Use
 
+The ansible VM must be connected once manually through SSH before using the module, so the SSH host key is stored in known_hosts
+
 ### Inventory file
 
 Create a YAML file contaning your fireboxes.

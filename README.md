@@ -2,12 +2,6 @@
 
 This collection provides modules to import commands to Watchguard Fireboxes.
 
-## Install
-
-```bash
-ansible-galaxy collection install watchguard.firebox
-```
-
 ## Modules
 
 - firebox_cli
